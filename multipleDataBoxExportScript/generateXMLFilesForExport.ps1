@@ -27,6 +27,8 @@
 
     [string]$StorageAccountKey,
 
+    [int]$maxBlobsInExportOrder=500000000, # soft limit of 500 million blobs per order
+
     # testing args
     [string]$FailureContainer,
     [long]$FailAfterNBlobs
@@ -341,7 +343,7 @@ try {
                 if ($blob.Length -gt $DataSize) {
                     Write-Error "the size of one blob cannot be greater than the device size" -ErrorAction Stop
                 }
-                if (($state.currentBin.remainingStorage - $blob.Length) -lt 0) {
+                if (($state.currentBin.remainingStorage - $blob.Length) -lt 0 -or ($state.currentBin.numBlobs -ge $maxBlobsInExportOrder)) {
                     $state.currentBin.closeBin()
                     Write-Host -ForeGroundColor Green "`r$(Get-TimeStamp) $($state.currentBin.fileName) is ready for an export order!" | timestamp
                     Write-Host -ForeGroundColor Yellow -NoNewLine "$(Get-TimeStamp) blobs processed: $($state.blobCount)"
