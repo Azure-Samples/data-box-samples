@@ -5,7 +5,7 @@ services: databox
 author: sipastak
 
 ms.service: databox
-ms.subservice: heavy
+ms.subservice: pod
 ms.topic: sample
 ms.date: 02/02/2023
 ms.author: alkohli
@@ -18,7 +18,7 @@ ms.author: alkohli
 Before you begin, make sure you have:
 
 - PowerShell installed. See [Install Windows PowerShell](https://docs.microsoft.com/powershell/scripting/install/installing-powershell?view=powershell-7.1).
-- Az PowerShell installed. See [Install Az PowerShell 6.4.0](https://docs.microsoft.com/powershell/azure/install-az-ps?view=azps-6.4.0&preserve-view=true).
+- Az PowerShell module installed. See [Install Az PowerShell 6.4.0](https://docs.microsoft.com/powershell/azure/install-az-ps?view=azps-6.4.0&preserve-view=true).
 - `databoxExportVm.ps` script, stored in a convenient location. Go to the [repo in Azure Samples where Data Box sample files are stored](https://github.com/Azure-Samples/data-box-samples). The script is located in the ExportVmScript folder.
 
 ## Run the script
@@ -34,11 +34,14 @@ Before you begin, make sure you have:
 	```
    Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
    ```
-3. Run the databoxExportVm.ps1 script. It will prompt for Subscription, ResourceGroup, DiskName, Storage Account Name, Container, Storage Account Key and Destination VHD name.
+
+3. Run the `databoxExportVm.ps1` script. It will prompt for Subscription, ResourceGroup, DiskName, Storage Account Name, Container, Storage Account Key, and Destination VHD name.
    
     After entering the above details, the script will prompt you for authentication to connect to Azure. 
 
     Below is the script execution with output.
+
+    ```
     PS C:\> .\databox-copy-manageddisk-to-storageaccount.ps1
     Enter Subscription ID:: xxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx                                                            
     Enter Resource Group:: testrg
@@ -49,7 +52,10 @@ Before you begin, make sure you have:
     Enter Destination VHD name:: destinationMdname.vhd
     WARNING: TenantId 'yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy' contains more than one active subscription. First one will be
     selected for further use. To select another subscription, use Set-AzContext.
-    
+    ```
+    Output: 
+
+    ```    
     Account               SubscriptionName          TenantId                             Environment
     -------               ----------------          --------                             -----------
     test@contoso.com Subscription Name yyyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy AzureCloud
@@ -84,7 +90,4 @@ Before you begin, make sure you have:
     Tags                               :
     Context                            : Microsoft.WindowsAzure.Commands.Storage.AzureStorageContext
     Name                               : destinationMdname.vhd
-
-
-
-PS C:\>
+    ```
