@@ -13,6 +13,8 @@ ms.author: alkohli
 
 # Export data from an Azure VM into an Azure Data Box
 
+The `databoxExportVm.ps` exports data from your Azure VM into your Azure Data Box device. 
+
 ## Prerequisites
 
 Before you begin, make sure you have:
