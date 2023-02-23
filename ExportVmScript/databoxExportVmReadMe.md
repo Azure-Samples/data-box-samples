@@ -11,9 +11,9 @@ ms.date: 02/02/2023
 ms.author: alkohli
 ---
 
-# Export data from an Azure VM into an Azure Data Box
+# Create a Blob storage account from an Azure VM managed disk
 
-The `databoxExportVm.ps` exports data from your Azure VM into your Azure Data Box device. 
+The `databoxExportVm.ps` creates a Blob storage account, which can be exported to Data Box and Data Box Disk, from an Azure VM managed disk.
 
 ## Prerequisites
 
