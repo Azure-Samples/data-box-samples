@@ -29,6 +29,9 @@ With this solution, the customer can now calculate checksum of any file and comp
 CRC64.java is the source file which has the functionality to compute the checksum.
 The Main function in test.java can be used to exercise it.
 
+A part of the source is already publicly available here: https://github.com/Azure/azure-storage-cpp/blob/master/Microsoft.WindowsAzure.Storage/src/crc64.cpp.
+However a part of it isn't (the CRC concatenation logic). You can refer the attached CRC64.Java class that implements the full CRC algorithm. 
+
 The Main function in test code takes a set of files as inputs, for computing CRC
 The files should be accessible, in terms of access and permissions.
 The files should be absolute path values.
