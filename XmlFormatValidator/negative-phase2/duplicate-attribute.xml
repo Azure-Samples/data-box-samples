@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Phase 2 negative: same attribute name appears twice on one element.
+
+  Phase 1 only tokenizes attributes - it does not track names within a
+  tag - so this file is "well-formed" at the tokenizer level. Phase 2's
+  XmlReader then rejects the duplicate per the XML spec.
+
+  Expected: exit 1, Phase 1 reports 0 errors, Phase 2 reports
+  "'x' is a duplicate attribute name".
+-->
+<Root>
+  <Item x="1" x="2"/>
+</Root>

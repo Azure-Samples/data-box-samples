@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BlobList>
+  <BlobPath>/container1/blob.txt</BlobPath>         <!-- exact blob -->
+  <BlobPathPrefix>/container2/</BlobPathPrefix>     <!-- all blobs in container2 -->
+  <BlobPathPrefix>/container</BlobPathPrefix>       <!-- all containers starting with "container" -->
+  <BlobPathPrefix>/container1/2021Q2</BlobPathPrefix>
+</BlobList>
+
+<AzureFileList>
+  <FilePath>/fileshare1/file.txt</FilePath>          <!-- exact file -->
+  <FilePathPrefix>/fileshare1/</FilePathPrefix>      <!-- everything under fileshare1 -->
+  <FilePathPrefix>/fileshare</FilePathPrefix>        <!-- shares starting with "fileshare" -->
+  <FilePathPrefix>/fileshare2/contosowest</FilePathPrefix>
+</AzureFileList>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Negative test for Phase 1 (custom tokenizer / well-formedness).
+
+  Every "issue" below is something the XML spec forbids at the most
+  basic structural level: tags that don't pair up, characters that
+  must be escaped, attributes that aren't quoted, etc. The Phase 1
+  scanner reports ALL of them in a single pass so you can fix them
+  in one round-trip.
+
+  Expected behaviour when this file is fed to Validate-XmlFormat.ps1:
+    - Exit code 1
+    - "Phase 1: well-formedness scan" reports many ERRORs
+    - "Phase 2 skipped due to Phase 1 issues" appears at the end
+
+  Each numbered comment below points to the issue on the following
+  line; they are deliberately heterogeneous to exercise different
+  scanner branches.
+-->
+<Root>
+
+  <!-- 1. Stray '<' in text content (should be &lt;). -->
+  <Text>a < b is true</Text>
+
+  <!-- 2. Stray '<' inside an attribute value (also illegal). -->
+  <Item label="contains < here">ok</Item>
+
+  <!-- 3. Attribute value that is not quoted. -->
+  <Item label=plain/>
+
+  <!-- 4. Attribute name with no '=' before its value. -->
+  <Item label "value"/>
+
+  <!-- 5. Start tag that never gets its closing '>'. -->
+  <Broken attr="value"
+
+  <!-- 6. Mismatched closing tag (opener was <Apple>). -->
+  <Apple>fruit</Banana>
+
+  <!-- 7. Cross-nested tags: <A><B>...</A></B> instead of </B></A>. -->
+  <A><B>oops</A></B>
+
+  <!-- 8. Extra closing tag with no matching opener. -->
+  <Solo>once</Solo></Solo>
+
+  <!-- 9. End tag with no name. -->
+  </>
+
+  <!-- 10. A tag that is opened but never closed before EOF. -->
+  <Unclosed>
+
+</Root>
