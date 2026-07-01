@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Phase 2 negative: the literal sequence ']]>' inside element content.
+
+  This sequence is reserved for closing a CDATA section, so the XML
+  spec forbids it appearing in regular text. Phase 1 does not check
+  for it; Phase 2's XmlReader rejects it.
+
+  Expected: exit 1, Phase 1 reports 0 errors, Phase 2 reports an
+  XmlReader parse error about ']]>'.
+-->
+<Root>this contains ]]> which is not allowed in text</Root>

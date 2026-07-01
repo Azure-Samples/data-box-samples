@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Phase 2 negative: '--' sequence inside an XML comment.
+
+  Phase 1's comment scanner only checks that the comment terminates
+  (sees '-->'), not what's between '<!--' and '-->'. The XML spec
+  forbids '--' inside a comment because it would ambiguously start to
+  look like the closing marker.
+
+  Expected: exit 1, Phase 1 reports 0 errors, Phase 2 reports an
+  XmlReader parse error about the '--' inside the comment.
+-->
+<!-- a -- b -->
+<Root/>

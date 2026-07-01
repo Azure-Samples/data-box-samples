@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Phase 2 negative: reference to an entity that was never declared.
+
+  Only five built-in XML entities exist: &amp; &lt; &gt; &apos; &quot;.
+  Any other entity must be declared in a DOCTYPE - which the validator
+  disables for safety (DtdProcessing.Prohibit). Phase 1 does not track
+  entity references; Phase 2 rejects this one.
+
+  Expected: exit 1, Phase 1 reports 0 errors, Phase 2 reports an
+  XmlReader parse error about the undeclared '&undefined;' reference.
+-->
+<Root>&undefined;</Root>
